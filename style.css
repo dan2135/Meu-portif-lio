@@ -13,7 +13,7 @@ body {
   --bg: #282A36;
   --text: #F8F8F2;
   --fundo: #BD93F9;
-  --card-bg: #44475A;
+  --card: #44475A;
   --button-bg: #50FA7B;
   --button-hover: #8BE9FD;
   --sombra: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -74,10 +74,34 @@ body {
 h1 {
     color: var(--highlight);
     font-size: 2rem;
+     padding-top: 50px;
 }
 
 .nome {
-
     text-align: center;
     padding: 2rem;
+}
+
+/*barra de vanegação*/
+nav {
+    background-color: var(--bg);
+    color: var(--text);
+    width: 100%;
+    padding: 1rem 2rem;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    z-index: 1000; 
+    justify-content: flex-end;
+    border-bottom: #50FA7B solid 2px;
+    height: 70px;
+}
+
+ nav ul {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
 }
