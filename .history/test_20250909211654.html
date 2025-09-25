@@ -1,0 +1,35 @@
+<style>
+  body {
+    margin: 0;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+  }
+
+  section {
+    scroll-snap-align: start;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    transition: opacity 0.6s ease;
+  }
+
+  section:nth-child(odd) {
+    background: #1e293b; /* azul escuro */
+    color: white;
+  }
+
+  section:nth-child(even) {
+    background: #f1f5f9; /* cinza claro */
+    color: #1e293b;
+  }
+</style>
+
+<body>
+  <section>Seção 1 - Sobre mim</section>
+  <section>Seção 2 - Projetos</section>
+  <section>Seção 3 - Habilidades</section>
+  <section>Seção 4 - Contato</section>
+</body>

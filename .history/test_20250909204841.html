@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Carlos | Desenvolvedor Front-end</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variáveis e reset */
+        :root {
+            --primary-color: #2d5b88;
+            --secondary-color: #4f8bc9;
+            --accent-color: #ff6b6b;
+            --text-color: #333;
+            --light-color: #f9f9f9;
+            --dark-color: #1a1a1a;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text-color);
+            background-color: var(--light-color);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animação de fundo */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            overflow: hidden;
+        }
+
+        .bg-animation:before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, transparent 20%, var(--light-color) 20%, var(--light-color) 25%, transparent 25%, transparent 30%, var(--light-color) 30%, var(--light-color) 35%, transparent 35%, transparent);
+            background-size: 50px 50px;
+            animation: moveBackground 30s linear infinite;
+            opacity: 0.1;
+        }
+
+        @keyframes moveBackground {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(-50px, -50px);
+            }
+        }
+
+        /* Tela de boas-vindas */
+        #ola {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 1000;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+
+        #ola.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        #ola p {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary-color);
+            font-weight: bold;
+            animation: fadeIn 1.5s ease;
+        }
+
+        #sjb {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease 0.5s forwards;
+            opacity: 0;
+        }
+
+        #sjb:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Conteúdo principal */
+        #conteudo {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        #conteudo.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nome p {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        /* Seções */
+        section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1, h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        h1:after, h2:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        h2:after {
+            width: 40px;
+        }
+
+        #sobre {
+            background-color: white;
+            border-radius: 10px;
+            margin: 2rem 5%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        #sobre p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        strong {
+            color: var(--secondary-color);
+        }
+
+        /* Skills */
+        #skills {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            margin: 2rem 5%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        #skills ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        #skills li {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #skills li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #skills li i {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+        }
+
+        /* Projetos */
+        #projetos {
+            background-color: white;
+            border-radius: 10px;
+            margin: 2rem 5%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .projetos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .projeto-card {
+            background: var(--light-color);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .projeto-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .projeto-img {
+            height: 200px;
+            background-color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .projeto-info {
+            padding: 1.5rem;
+        }
+
+        .projeto-info h3 {
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+        }
+
+        .projeto-info p {
+            margin-bottom: 1.2rem;
+            color: #666;
+        }
+
+        .projeto-link {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .projeto-link:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Contato */
+        #contato {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            margin: 2rem 5%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .contato-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .contato-links li {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .contato-links li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contato-links i {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+        }
+
+        .contato-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contato-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--dark-color);
+            color: white;
+            margin-top: 3rem;
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            nav {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            #ola p {
+                font-size: 1.8rem;
+            }
+            
+            section {
+                padding: 3rem 5%;
+            }
+            
+            .projetos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-animation"></div>
+    
+    <div id="ola">
+        <p>Olá! Bem-vindo ao meu portfólio!</p>
+        <button id="sjb" onclick="mostrarConteudo()">Conheça meu trabalho</button>
+    </div>
+
+    <div id="conteudo">
+        <header>
+            <div class="nome">
+                <p>Daniel Carlos | Desenvolvedor Front-end</p>
+            </div>
+            <nav>
+                <a href="#sobre">Sobre</a>
+                <a href="#skills">Habilidades</a>
+                <a href="#projetos">Projetos</a>
+                <a href="#contato">Contato</a>
+            </nav>
+        </header>   
+        
+        <main>
+            <section id="sobre">
+                <h1>Olá, eu sou o Daniel!</h1>
+                <p>Sou estudante do 4º semestre de <strong>Análise e Desenvolvimento de Sistemas</strong> pela Universidade Braz Cubas.<br>
+                    Desde que iniciei minha jornada na área de tecnologia, desenvolvi uma forte paixão por <strong>desenvolvimento web</strong> e por transformar ideias em interfaces funcionais.<br>
+                    Além da graduação, concluí o curso de <strong>Desenvolvimento Web</strong> no <strong>Instituto da Oportunidade Social (IOS)</strong>, onde aprimorei meus conhecimentos em programação e gestão empresarial.
+                </p>
+                <p>
+                    Busco minha <strong>primeira oportunidade profissional na área de programação</strong>, onde eu possa
+                    aplicar meus conhecimentos e continuar aprendendo com profissionais mais experientes.
+                </p>
+                <p>
+                    Tenho conhecimentos sólidos em <strong>HTML5, CSS3, JavaScript</strong> e utilizo frameworks como o
+                    <strong>Bootstrap</strong> para criar páginas web modernas, responsivas e acessíveis. Também estou
+                    sempre praticando lógica de programação, controle de versões com Git/GitHub e explorando outras
+                    tecnologias para crescer como desenvolvedor.
+                </p>
+                <p>
+                    Me considero uma pessoa <strong>dedicada, comunicativa e curiosa</strong> por aprender. Gosto de
+                    resolver problemas e encaro cada desafio como uma chance de evoluir técnica e pessoalmente.
+                </p>
+                <p>
+                    Estou pronto para fazer parte de um time e contribuir com minhas habilidades, energia e vontade de
+                    crescer!
+                </p>
+            </section>
+
+            <section id="skills">
+                <h2>💻 Tecnologias que conheço</h2>
+                <ul>
+                    <li><i class="fab fa-html5"></i> HTML5</li>
+                    <li><i class="fab fa-css3-alt"></i> CSS3</li>
+                    <li><i class="fab fa-js"></i> JavaScript</li>
+                    <li><i class="fab fa-bootstrap"></i> Bootstrap</li>
+                    <li><i class="fab fa-git-alt"></i> Git/GitHub</li>
+                    <li><i class="fas fa-code"></i> Lógica de Programação</li>
+                </ul>
+            </section>
+
+            <section id="projetos">
+                <h2>🚀 Projetos</h2>
+                <p>Confira alguns projetos que desenvolvi durante meus estudos:</p>
+                <div class="projetos-grid">
+                    <div class="projeto-card">
+                        <div class="projeto-img">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <div class="projeto-info">
+                            <h3>Landing Page Responsiva</h3>
+                            <p>Site responsivo para negócio local, desenvolvido com HTML, CSS e JavaScript.</p>
+                            <a href="#" class="projeto-link">Ver Projeto</a>
+                        </div>
+                    </div>
+                    
+                    <div class="projeto-card">
+                        <div class="projeto-img">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="projeto-info">
+                            <h3>Calculadora JS</h3>
+                            <p>Calculadora funcional com operações básicas, desenvolvida com JavaScript.</p>
+                            <a href="#" class="projeto-link">Ver Projeto</a>
+                        </div>
+                    </div>
+                    
+                    <div class="projeto-card">
+                        <div class="projeto-img">
+                            <i class="fas fa-weather"></i>
+                        </div>
+                        <div class="projeto-info">
+                            <h3>App de Clima</h3>
+                            <p>Aplicativo de previsão do tempo usando API externa e interface moderna.</p>
+                            <a href="#" class="projeto-link">Ver Projeto</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contato">
+                <h2>📫 Contato</h2>
+                <p>Entre em contato comigo por:</p>
+                <ul class="contato-links">
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <span>Email: daniel@exemplo.com</span>
+                    </li>
+                    <li>
+                        <i class="fab fa-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/seulinkedin" target="_blank">LinkedIn</a>
+                    </li>
+                    <li>
+                        <i class="fab fa-github"></i>
+                        <a href="https://github.com/seuusuario" target="_blank">GitHub</a>
+                    </li>
+                    <li>
+                        <i class="fab fa-whatsapp"></i>
+                        <span>(11) 99999-9999</span>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 Daniel Carlos. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <script>
+        function mostrarConteudo() {
+            document.getElementById('ola').classList.add('hidden');
+            document.getElementById('conteudo').classList.add('visible');
+            
+            // Rolagem suave para links internos
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        }
+    </script>
+</body>
+</html>

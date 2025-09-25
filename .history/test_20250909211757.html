@@ -1,0 +1,48 @@
+<style>
+  body {
+    margin: 0;
+    background: #0f172a;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+
+  section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.2;
+    transition: opacity 0.6s ease;
+    font-size: 2rem;
+  }
+
+  section.active {
+    opacity: 1;
+  }
+</style>
+
+<body>
+  <section>Seção 1 - Sobre mim</section>
+  <section>Seção 2 - Projetos</section>
+  <section>Seção 3 - Habilidades</section>
+  <section>Seção 4 - Contato</section>
+
+  <script>
+    const sections = document.querySelectorAll("section");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          } else {
+            entry.target.classList.remove("active");
+          }
+        });
+      },
+      { threshold: 0.6 } // 60% da seção precisa estar visível
+    );
+
+    sections.forEach((sec) => observer.observe(sec));
+  </script>
+</body>

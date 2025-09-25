@@ -1,0 +1,222 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+    --bg: #282A36;
+    --text: #F8F8F2;
+    --fundo: #BD93F9;
+    --card-bg: #44475A;
+    --button-bg: #50FA7B;
+    --button-hover: #8BE9FD;
+    --sombra: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --transit: 0.6s ease;
+}
+
+body {
+    background-color: var(--fundo);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+
+}
+ 
+.bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var(--bg);
+            overflow: hidden;
+        }
+        
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -70%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(
+                circle at center,
+                transparent 0%,
+                var(--fundo) 70%,
+                transparent 100%
+            );
+            opacity: 0.2;
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+
+
+#conteudo {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    display: none;
+
+
+}
+
+ #ola {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 1000;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+
+        #ola.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        #ola p {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary-color);
+            font-weight: bold;
+            animation: fadeIn 1.5s ease;
+        }
+
+        #sjb {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease 0.5s forwards;
+            opacity: 0;
+            in
+        }
+
+        #sjb:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+h1 {
+    color: var(--highlight);
+    font-size: 2rem;
+     padding-top: 50px;
+}
+
+
+/* HEADER E MENU FUNCIONAL */
+header {
+    background-color: transparent;
+    width: 100%;
+    height: 80px;
+    padding: 1.3rem;
+    display: flex;
+    justify-content: space-between;
+
+    box-shadow: var(--sombra);
+
+}
+
+.nome {
+    color: var(--text);
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 0rem;
+    display: flex;
+    padding: 0.5rem;
+    align-items: end;
+    text-align: center;
+    padding: 2rem;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem;
+    transition: color 0.3s;
+    position: relative;
+    /* Necessário para o pseudo-elemento */
+    overflow: hidden;
+    /* Esconde o ::after que ultrapassar */
+}
+
+
+nav a:hover {
+    color: var(--button-hover);
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--button-hover);
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+nav a:hover::after {
+    transform: translateY(0);
+}
+
+/* SEÇÃO SOBRE MIM */
+
+#sobre {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    width: 100%;
+    word-break: break-word;
+    margin-top: 25%;
+    gap: 1rem;
+}
+
+#sobre h1 {
+    display: flex;
+    
+    align-items: flex-end;
+    justify-content: flex-start;
+    font-size: 6vw;
+    font-weight: 200;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+    margin-bottom: 2rem;
+
+}
+
+#sobre p {
+    text-align: center;
+    color: var(--text);
+    font-size: 2rem;
+    line-height: 1.5;
+    display: block;
+    margin-bottom: 4rem;
+margin-left: 400px;
+    margin-top: 1rem;
+}
