@@ -150,7 +150,6 @@ nav {
     display: flex;
     align-items: center;
     gap: 1.5rem;
-     z-index: 999;
 }
 
 nav a {
@@ -276,19 +275,6 @@ strong {
     gap: 1.5rem;
     margin-top: 2rem;
 }
-/* Garantir que as habilidades sejam visíveis por padrão quando a seção estiver ativa */
-#skills.active .skill-card {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Animações em cascata para as habilidades */
-#skills.active .skill-card:nth-child(1) { transition-delay: 0.1s; }
-#skills.active .skill-card:nth-child(2) { transition-delay: 0.2s; }
-#skills.active .skill-card:nth-child(3) { transition-delay: 0.3s; }
-#skills.active .skill-card:nth-child(4) { transition-delay: 0.4s; }
-#skills.active .skill-card:nth-child(5) { transition-delay: 0.5s; }
-#skills.active .skill-card:nth-child(6) { transition-delay: 0.6s; }
 
 .skill-card {
     background: rgba(255, 255, 255, 0.05);
@@ -511,17 +497,16 @@ footer {
         margin: 0.5rem 0;
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 5px;
-         z-index: 999;
     }
 
     .overlay {
         position: fixed;
-      
+        top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         background: rgba(0, 0, 0, 0.5);
-        z-index: 998;
+        z-index: 999;
         display: none;
     }
     

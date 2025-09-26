@@ -7,7 +7,7 @@ function mostrarConteudo() {
         iniciarObservadorSecoes();
         iniciarObservadorElementos();
         configurarNavegacao();
-        // REMOVIDO: setupMenuHamburguer() daqui para evitar duplicação
+        setupMenuHamburguer(); // Inicializar menu hamburguer aqui também
     }, 300);
 }
 
@@ -51,12 +51,11 @@ function iniciarObservadorSecoes() {
 
 // Observador para elementos individuais (skills, projetos, contato)
 function iniciarObservadorElementos() {
-    // CORREÇÃO: Selecionando os elementos corretos baseados no seu HTML
-    const skillCards = document.querySelectorAll('.skill-card'); // Mudado de #skills li para .skill-card
+    const skillItems = document.querySelectorAll('#skills li');
     const projectCards = document.querySelectorAll('.projeto-card');
     const contactItems = document.querySelectorAll('.contato-links li');
     
-    const elements = [...skillCards, ...projectCards, ...contactItems];
+    const elements = [...skillItems, ...projectCards, ...contactItems];
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -91,14 +90,7 @@ function configurarNavegacao() {
     });
 }
 
-// Variável global para controlar se o menu já foi inicializado
-let menuInicializado = false;
-
 function setupMenuHamburguer() {
-    // Prevenir inicialização múltipla
-    if (menuInicializado) return;
-    menuInicializado = true;
-    
     const menuBtn = document.querySelector('.menu-btn');
     const nav = document.querySelector('nav');
     const body = document.body;
@@ -106,22 +98,18 @@ function setupMenuHamburguer() {
     // Verificar se os elementos existem
     if (!menuBtn || !nav) return;
 
-    // Verificar se o overlay já existe para evitar duplicação
-    let overlay = document.querySelector('.overlay');
-    if (!overlay) {
-        overlay = document.createElement('div');
-        overlay.className = 'overlay';
-        document.body.appendChild(overlay);
-    }
+    // Criar overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'overlay';
+    document.body.appendChild(overlay);
 
     function toggleMenu() {
-        const isActive = nav.classList.contains('active');
         nav.classList.toggle('active');
         overlay.classList.toggle('active');
-        body.style.overflow = isActive ? '' : 'hidden';
+        body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
         
         // Alterar ícone do botão
-        if (!isActive) {
+        if (nav.classList.contains('active')) {
             menuBtn.innerHTML = '✕';
             menuBtn.setAttribute('aria-label', 'Fechar menu');
         } else {
@@ -152,34 +140,18 @@ function setupMenuHamburguer() {
 
 // Inicializar quando a página carregar
 document.addEventListener("DOMContentLoaded", function() {
-    // CORREÇÃO: Verificar pela classe 'visible' em vez de style.display
+    // Verificar se o conteúdo já está visível (caso de refresh na página)
     const conteudo = document.getElementById('conteudo');
-    const ola = document.getElementById('ola');
-    
-    // Se a página carregou diretamente com o conteúdo visível
-    if (conteudo && conteudo.classList.contains('visible')) {
+    if (conteudo && conteudo.style.display === 'block') {
         setupMenuHamburguer();
         iniciarObservadorSecoes();
         iniciarObservadorElementos();
         configurarNavegacao();
-    } 
-    // Se a tela de boas-vindas ainda está visível
-    else if (ola && !ola.classList.contains('hidden')) {
-        // Adicionar evento ao botão "Conheça meu trabalho"
-        const sjbButton = document.getElementById('sjb');
-        if (sjbButton) {
-            sjbButton.addEventListener('click', function() {
-                mostrarConteudo();
-                // Inicializar o menu hamburguer após mostrar o conteúdo
-                setTimeout(setupMenuHamburguer, 350);
-            });
-        }
     }
-    // Caso padrão (página carregou sem animações)
-    else {
-        setupMenuHamburguer();
-        iniciarObservadorSecoes();
-        iniciarObservadorElementos();
-        configurarNavegacao();
+    
+    // Adicionar evento ao botão "Conheça meu trabalho"
+    const sjbButton = document.getElementById('sjb');
+    if (sjbButton) {
+        sjbButton.addEventListener('click', mostrarConteudo);
     }
 });
