@@ -124,7 +124,7 @@ header {
     justify-content: space-between;
     align-items: center;
     box-shadow: var(--sombra);
-    position: fixed;
+    position: sticky;
     top: 0;
     z-index: 100;
 }
@@ -460,27 +460,27 @@ footer {
     margin-top: 3rem;
 }
 
-    .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 150px;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 998;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-    }
-    
-    .overlay.active {
-                opacity: 1;
-        display: block;
-        visibility: visible;
-    }
-
 /* Animações */
 @keyframes fadeIn {
+    
+        .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 998;
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+        }
+        
+        .overlay.active {
+                    opacity: 1;
+            display: block;
+            visibility: visible;
+        }
     from {
         opacity: 0;
         transform: translateY(20px);
@@ -502,12 +502,6 @@ footer {
     .menu-btn {
         display: block;
     }
-      .overlay.active {
-        opacity: 1;
-        display: block;
-        visibility: visible;
-    }
-
     
     nav {
         position: fixed;
