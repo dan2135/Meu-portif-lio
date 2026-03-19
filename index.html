@@ -1,161 +1,196 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>portfólio Daniel</title>
-    <link rel="shortcut icon" href="/img/logdev.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
- <link rel="stylesheet" href="style.css">
-  
+    <title>Portfólio | Daniel Carlos de Oliveira Silva</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- CSS Principal -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="bg-animation"></div>
-    
+    <!-- Tela de boas-vindas -->
     <div id="ola">
-        <p>Olá! Bem-vindo ao meu portfólio!</p>
-        <button id="sjb" onclick="mostrarConteudo()">Conheça meu trabalho</button>
+        <div class="welcome-content">
+            <h1>Olá, seja bem-vindo!</h1>
+            <p>Desenvolvedor Web</p>
+            <button id="sjb">Entrar</button>
+        </div>
     </div>
 
+    <!-- Conteúdo Principal -->
     <div id="conteudo">
         <header>
-            <div class="nome">
-                <p>Daniel Carlos | Desenvolvedor Front-end</p>
+            <div class="logo">Desenvolvedor Web</div>
+            <div class="header-controls">
+                <button class="dark-mode-btn" id="darkModeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-btn" id="menuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-            <button class="menu-btn" aria-label="Abrir menu">&#9776;</button>
-            <nav>
+            <nav id="nav">
+                <a href="#inicio" class="active">Início</a>
                 <a href="#sobre">Sobre</a>
                 <a href="#skills">Habilidades</a>
                 <a href="#projetos">Projetos</a>
                 <a href="#contato">Contato</a>
             </nav>
-        </header>   
-        
-        <main>
-            <section id="sobre">
-                <h1>Olá, eu sou o Daniel!</h1>
-               <p>Sou <strong>desenvolvedor web autônomo</strong>, com experiência prática em projetos como <strong>FAQ dinâmico</strong>, <strong>pop-ups interativos para download de documentos</strong> e <strong>carrosséis de feedbacks em landing pages</strong>.</p>
-<p>Durante minha formação inicial no <strong>Instituto da Oportunidade Social (IOS) em Santana</strong>, adquiri conhecimentos em <strong>HTML, CSS, Git/GitHub, Pacote Office</strong> e uma introdução ao <strong>JavaScript</strong>.</p>
-<p>Mais tarde, ampliei meu aprendizado na faculdade, estudando <strong>C</strong>, <strong>gestão estratégica</strong> e <strong>fundamentos de hardware e software</strong>, o que me deu uma base sólida para compreender todo o ciclo de desenvolvimento de sistemas.</p>
-<p>Atualmente, possuo <strong>conhecimento intermediário em JavaScript</strong>, noções básicas de <strong>React</strong> e sigo em constante aprendizado, explorando boas práticas de <strong>UX/UI</strong> e ferramentas de <strong>versionamento e automação</strong> para evoluir como desenvolvedor.</p>
-<p>Tenho facilidade para <strong>trabalhar em equipe</strong>, sou <strong>adaptável a novas tecnologias</strong> e busco sempre entregar <strong>soluções eficientes e escaláveis</strong> que contribuam para o crescimento e sucesso dos projetos.</p>
-<p>Meu objetivo é continuar ampliando minhas habilidades técnicas e criativas para desenvolver aplicações web modernas que unam performance, acessibilidade e uma ótima experiência para o usuário.</p>
+        </header>
 
-
-
-            </section>
-
-               <section id="skills">
-                <h2>💻 Tecnologias que conheço</h2>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <i class="fab fa-html5"></i>
-                        <h3>HTML5</h3>
-                        <p>Marcacao semântica e acessível</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fab fa-css3-alt"></i>
-                        <h3>CSS3</h3>
-                        <p>Estilizacao moderna e responsiva</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fab fa-js"></i>
-                        <h3>JavaScript</h3>
-                        <p>Interatividade e lógica de aplicacao</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fab fa-react"></i>
-                        <h3>React</h3>
-                        <p>Interfaces componentizadas</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fab fa-bootstrap"></i>
-                        <h3>Bootstrap</h3>
-                        <p>Framework CSS para designs responsivos</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fab fa-git-alt"></i>
-                        <h3>Git</h3>
-                        <p>Controle de versao e colaboracao</p>
-                    </div>
+        <!-- Seção Início -->
+        <section id="inicio">
+            <div class="hero">
+                <div class="hero-text">
+                    <h1>Olá, eu sou <span class="destaque">Daniel Carlos</span></h1>
+                    <p>Desenvolvedor web em início de carreira, focado em criar interfaces modernas, responsivas e funcionais, com atenção à experiência do usuário.</p>
+                    <a href="#contato" class="btn">Entre em contato</a>
                 </div>
-            </section>
-
-            <section id="projetos">
-                <h2>🚀 Projetos</h2>
-                <p>Confira alguns projetos que desenvolvi durante meus estudos:</p>
-                <div class="projetos-grid">
-                    <div class="projeto-card">
-                        <div class="projeto-img">
-                            <i class="fas fa-desktop"></i>
-                        </div>
-                        <div class="projeto-info">
-                            <h3>Faq Laudo facil</h3>
-                            <p>Repositório dedicado à seção de Perguntas Frequentes (FAQ) do Laudo Fácil, contendo conteúdo e código para esclarecer dúvidas de usuários e otimizar a experiência na plataforma.</p>
-                            <a href="https://faqlaudo.netlify.app" target="_blank" class="projeto-link">Ver Projeto</a>
-                        </div>
-                    </div>
-                    
-                    <div class="projeto-card">
-                        <div class="projeto-img">
-                            <i class="fas fa-calculator"></i>
-                        </div>
-                        <div class="projeto-info">
-                            <h3>Converso de USD para BRl</h3>
-                            <p>Aplicação desenvolvida em HTML, CSS e JavaScript, que reúne uma calculadora funcional com operações matemáticas básicas e um conversor de USD para BRL.<p>
-                            <a href="https://conversordolarreal.netlify.app" class="projeto-link" target="_blank">Ver Projeto</a>
-                        </div>
-                    </div>
-                    
-                    <div class="projeto-card">
-                        <div class="projeto-img">
-                           <i class="fa-solid fa-clapperboard"></i>
-                        </div>
-                        <div class="projeto-info">
-                            <h3>Stat viewer</h3>
-                            <p>State Viewer – Plataforma web inspirada no Letterboxd para avaliação e descrição de filmes, séries e outras obras.
-                                 Permite cadastrar títulos, escrever reviews e acompanhar o que já foi assistido, com interface responsiva e foco em usabilidade.</p>
-                            <a href="https://moviestatsviewer.netlify.app/" target="_blank" class="projeto-link">Ver Projeto</a>
-                        </div>
-                    </div>
+                <div class="hero-image">
+                    <i class="fas fa-code"></i>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section id="contato">
-                <h2>📫 Contato</h2>
-                <p>Entre em contato comigo por:</p>
-                <ul class="contato-links">
-                    <li>
+        <!-- Seção Sobre -->
+        <section id="sobre">
+            <h2>Sobre mim</h2>
+            <div class="sobre-content">
+                <p>Sou desenvolvedor web com experiência prática em projetos próprios, freelas e soluções para clientes. Trabalho com HTML, CSS, JavaScript e integração com backend utilizando Python com Flask.</p>
+                <p>Já desenvolvi landing pages, FAQ dinâmico, pop-ups interativos, carrosséis de depoimentos e aplicações web como sistema de controle financeiro e chatbot. Sou formado em Análise e Desenvolvimento de Sistemas pela Braz Cubas e também concluí o curso de Desenvolvimento Web no IOS.</p>
+                <p>Tenho perfil autodidata, facilidade para aprender novas tecnologias e busco crescer como desenvolvedor front-end e full stack júnior, criando aplicações modernas, performáticas e úteis para o usuário.</p>
+            </div>
+        </section>
+
+        <!-- Seção Habilidades -->
+        <section id="skills">
+            <h2>Habilidades</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fab fa-html5"></i>
+                    <h3>HTML5</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-css3-alt"></i>
+                    <h3>CSS3</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-js"></i>
+                    <h3>JavaScript</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-python"></i>
+                    <h3>Python / Flask</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-git-alt"></i>
+                    <h3>Git / GitHub</h3>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-database"></i>
+                    <h3>SQL / PostgreSQL</h3>
+                </div>
+
+               
+              
+            </div>
+        </section>
+
+        <!-- Seção Projetos -->
+        <section id="projetos">
+            <h2>Projetos</h2>
+            <div class="projetos-grid">
+                <div class="projeto-card">
+                    <div class="projeto-img">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3>Controle Financeiro</h3>
+                    <p>Sistema web para gerenciamento de ganhos e gastos, com atualização de saldo em tempo real e organização de transações.</p>
+                    <div class="projeto-tech">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                    <a href="https://controle-de-gasto-production.up.railway.app/" class="projeto-link">Ver projeto</a>
+                </div>
+
+                <!-- <div class="projeto-card">
+                    <div class="projeto-img">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Chatbot com Flask</h3>
+                    <p>Aplicação web com integração entre frontend e backend, utilizando rotas em Flask e respostas automatizadas.</p>
+                    <div class="projeto-tech">
+                        <span>Python</span>
+                        <span>Flask</span>
+                        <span>HTML</span>
+                    </div>
+                    <a href="#" class="projeto-link">Ver projeto</a>
+                </div> -->
+
+                <div class="projeto-card">
+                    <div class="projeto-img">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Landing Pages Profissionais</h3>
+                    <p>Desenvolvimento de páginas com foco em conversão, incluindo FAQ dinâmico, pop-ups interativos e carrossel de depoimentos.</p>
+                    <div class="projeto-tech">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>     
+                    </div>
+                    <a href="https://faqlaudo.netlify.app" class="projeto-link">Ver projeto</a>
+                </div>
+
+                <div class="projeto-card">
+                    <div class="projeto-img">
+                    <i class="fa-solid fa-film" ></i>
+                    </div>
+                    <h3>State viewer</h3>
+                    <p>Aplicação que consome uma REST API para buscar filmes, exibindo estatísticas e detalhes dinamicamente.</p>
+                    <div class="projeto-tech">
+                          <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>   
+                    </div>
+                    <a href="https://movie-stats-viewer-production.up.railway.app" class="projeto-link">Ver projeto</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Contato -->
+        <section id="contato">
+            <h2>Contato</h2>
+            <div class="contato-content">
+                <p>Tem um projeto em mente ou uma oportunidade na área? Vamos conversar.</p>
+                <div class="contato-links">
+                    <a href="mailto:danielcarlos2135@gmail.com" class="contato-item">
                         <i class="fas fa-envelope"></i>
-                        <a href="mailto:danielcarlos2135@gmail.com">
-                        <span>danielcarlos2135@gmail.com</span></a>
-                    </li>
-                    <li>
-                        <i class="fab fa-linkedin"></i>
-                        <a href="https://www.linkedin.com/in/daniel-carlos-963418241" target="_blank">LinkedIn</a>
-                    </li>
-                    <li>
+                        danielcarlos2135@gmail.com
+                    </a>
+                    <a href="https://github.com/dan2135" target="_blank" class="contato-item">
                         <i class="fab fa-github"></i>
-                        <a href="https://github.com/dan2135" target="_blank">GitHub</a>
-                    </li>
-                    <li> 
-                        <i class="fab fa-whatsapp"></i>
-                        <a href="https://wa.me/5511919988939">
-                        <span>(11) 91998-8939</span>
-                        </a>
-                    </li>
-                </ul>
-            </section>
-        </main>
+                        GitHub
+                    </a>
+                    <a href="#" target="_blank" class="contato-item">
+                        <i class="fab fa-linkedin"></i>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+        </section>
 
         <footer>
-            <p>&copy; 2023 Daniel Carlos. Todos os direitos reservados.</p>
+            <p>&copy; 2026 Daniel . Todos os direitos reservados.</p>
         </footer>
     </div>
 
-    <script src="script.js">
-        // Função para mostrar o conteúdo principal
-   
-    </script>
+    <!-- Overlay para menu mobile -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>

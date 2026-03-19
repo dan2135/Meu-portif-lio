@@ -1,185 +1,145 @@
-function mostrarConteudo() {
-    document.getElementById('ola').classList.add('hidden');
-    document.getElementById('conteudo').classList.add('visible');
-    
-    // Iniciar observadores após mostrar o conteúdo
-    setTimeout(() => {
-        iniciarObservadorSecoes();
-        iniciarObservadorElementos();
-        configurarNavegacao();
-        // REMOVIDO: setupMenuHamburguer() daqui para evitar duplicação
-    }, 300);
-}
-
-// Observador para as seções principais
-function iniciarObservadorSecoes() {
-    const sections = document.querySelectorAll('section');
+// Aguardar o carregamento completo do DOM
+document.addEventListener('DOMContentLoaded', function() {
+    // Elementos DOM
+    const olaScreen = document.getElementById('ola');
+    const conteudo = document.getElementById('conteudo');
+    const sjbButton = document.getElementById('sjb');
+    const menuBtn = document.getElementById('menuBtn');
+    const nav = document.getElementById('nav');
+    const overlay = document.getElementById('overlay');
     const navLinks = document.querySelectorAll('nav a');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Remover a classe ativa de todas as seções
-                sections.forEach(section => {
-                    if (section !== entry.target) {
-                        section.classList.add('exiting');
-                        setTimeout(() => {
-                            section.classList.remove('active', 'exiting');
-                        }, 300);
-                    }
-                });
-                
-                // Adicionar a classe ativa à seção visível
-                entry.target.classList.add('active');
-                
-                // Atualizar o link de navegação ativo
-                const id = entry.target.getAttribute('id');
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${id}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    sections.forEach(section => {
-        observer.observe(section);
-    });
-}
-
-// Observador para elementos individuais (skills, projetos, contato)
-function iniciarObservadorElementos() {
-    // CORREÇÃO: Selecionando os elementos corretos baseados no seu HTML
-    const skillCards = document.querySelectorAll('.skill-card'); // Mudado de #skills li para .skill-card
-    const projectCards = document.querySelectorAll('.projeto-card');
-    const contactItems = document.querySelectorAll('.contato-links li');
-    
-    const elements = [...skillCards, ...projectCards, ...contactItems];
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, 100);
-            }
-        });
-    }, { threshold: 0.2 });
-    
-    elements.forEach(element => {
-        observer.observe(element);
-    });
-}
-
-// Configurar navegação suave
-function configurarNavegacao() {
-    document.querySelectorAll('nav a').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 100,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-}
-
-// Variável global para controlar se o menu já foi inicializado
-let menuInicializado = false;
-
-function setupMenuHamburguer() {
-    // Prevenir inicialização múltipla
-    if (menuInicializado) return;
-    menuInicializado = true;
-    
-    const menuBtn = document.querySelector('.menu-btn');
-    const nav = document.querySelector('nav');
+    const sections = document.querySelectorAll('section');
+    const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.body;
 
-    // Verificar se os elementos existem
-    if (!menuBtn || !nav) return;
-
-    // Verificar se o overlay já existe para evitar duplicação
-    let overlay = document.querySelector('.overlay');
-    if (!overlay) {
-        overlay = document.createElement('div');
-        overlay.className = 'overlay';
-        document.body.appendChild(overlay);
+    // Dark Mode Toggle
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        body.classList.add('dark');
+        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    } else {
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
     }
 
-    function toggleMenu() {
-        const isActive = nav.classList.contains('active');
+    darkModeToggle.addEventListener('click', function() {
+        body.classList.toggle('dark');
+        if (body.classList.contains('dark')) {
+            localStorage.setItem('darkMode', 'enabled');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            localStorage.setItem('darkMode', 'disabled');
+            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+    });
+
+    // Esconder tela de boas-vindas
+    sjbButton.addEventListener('click', function() {
+        olaScreen.classList.add('hidden');
+        conteudo.style.display = 'block';
+        
+        setTimeout(function() {
+            conteudo.classList.add('visible');
+        }, 100);
+    });
+
+    // Menu mobile toggle se o tamanho da tela for menor que 768px
+    if (window.innerWidth < 768) {
+        document.body.classList.add('mobile');
+    }   
+    menuBtn.addEventListener('click', function() {
         nav.classList.toggle('active');
         overlay.classList.toggle('active');
-        body.style.overflow = isActive ? '' : 'hidden';
-        
-        // Alterar ícone do botão
-        if (!isActive) {
-            menuBtn.innerHTML = '✕';
-            menuBtn.setAttribute('aria-label', 'Fechar menu');
+        document.body.classList.toggle('menu-open');
+
+        // Mudar ícone do menu
+        const icon = menuBtn.querySelector('i');
+        if (nav.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
         } else {
-            menuBtn.innerHTML = '&#9776;';
-            menuBtn.setAttribute('aria-label', 'Abrir menu');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
         }
-    }
+    });
 
-    menuBtn.addEventListener('click', toggleMenu);
-    
     // Fechar menu ao clicar no overlay
-    overlay.addEventListener('click', toggleMenu);
-    
-    // Fechar menu ao clicar em um link
-    nav.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') {
-            toggleMenu();
-        }
-    });
-    
-    // Fechar menu ao pressionar ESC
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && nav.classList.contains('active')) {
-            toggleMenu();
-        }
-    });
-}
+    overlay.addEventListener('click', closeMenu);
 
-// Inicializar quando a página carregar
-document.addEventListener("DOMContentLoaded", function() {
-    // CORREÇÃO: Verificar pela classe 'visible' em vez de style.display
-    const conteudo = document.getElementById('conteudo');
-    const ola = document.getElementById('ola');
-    
-    // Se a página carregou diretamente com o conteúdo visível
-    if (conteudo && conteudo.classList.contains('visible')) {
-        setupMenuHamburguer();
-        iniciarObservadorSecoes();
-        iniciarObservadorElementos();
-        configurarNavegacao();
-    } 
-    // Se a tela de boas-vindas ainda está visível
-    else if (ola && !ola.classList.contains('hidden')) {
-        // Adicionar evento ao botão "Conheça meu trabalho"
-        const sjbButton = document.getElementById('sjb');
-        if (sjbButton) {
-            sjbButton.addEventListener('click', function() {
-                mostrarConteudo();
-                // Inicializar o menu hamburguer após mostrar o conteúdo
-                setTimeout(setupMenuHamburguer, 350);
+    // Fechar menu ao clicar em um link
+    navLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Remover active de todos os links
+            navLinks.forEach(function(l) {
+                l.classList.remove('active');
             });
-        }
+            
+            // Adicionar active ao link clicado
+            this.classList.add('active');
+            
+            // Scroll suave para a seção
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                targetSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+            
+            // Fechar menu mobile
+            closeMenu();
+        });
+    });
+
+    function closeMenu() {
+        nav.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.classList.remove('menu-open');
+        
+        const icon = menuBtn.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
     }
-    // Caso padrão (página carregou sem animações)
-    else {
-        setupMenuHamburguer();
-        iniciarObservadorSecoes();
-        iniciarObservadorElementos();
-        configurarNavegacao();
-    }
+
+    // Detectar seção ativa no scroll
+    window.addEventListener('scroll', function() {
+        let current = '';
+        const scrollPosition = window.scrollY;
+
+        sections.forEach(function(section) {
+            const sectionTop = section.offsetTop - 100;
+            const sectionBottom = sectionTop + section.offsetHeight;
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(function(link) {
+            link.classList.remove('active');
+            const href = link.getAttribute('href').substring(1);
+            if (href === current) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Smooth scroll para links âncora (fallback)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            if (this.getAttribute('href') !== '#') {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
 });
