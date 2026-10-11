@@ -3,31 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio | Daniel Carlos de Oliveira Silva</title>
+    <meta name="description" content="Portfólio de Daniel Carlos, desenvolvedor web. Conheça meus projetos e habilidades em JavaScript e Python."><link rel="icon" href="img/logdev.ico"><title>Portfólio | Daniel Carlos de Oliveira Silva</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- CSS Principal -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <!-- Tela de boas-vindas -->
-    <div id="ola">
-        <div class="welcome-content">
-            <h1>Olá, seja bem-vindo!</h1>
-            <p>Desenvolvedor Web</p>
-            <button id="sjb">Entrar</button>
-        </div>
-    </div>
-
+<body class="dark">
     <!-- Conteúdo Principal -->
     <div id="conteudo">
         <header>
-            <div class="logo">Desenvolvedor Web</div>
+            <a class="logo" href="#inicio">dc<span>.</span></a>
             <div class="header-controls">
-                <button class="dark-mode-btn" id="darkModeToggle">
+                <button class="dark-mode-btn" id="darkModeToggle" aria-label="Alternar tema">
                     <i class="fas fa-moon"></i>
                 </button>
-                <button class="menu-btn" id="menuBtn">
+                <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -44,29 +35,29 @@
         <section id="inicio">
             <div class="hero">
                 <div class="hero-text">
-                    <h1>Olá, eu sou <span class="destaque">Daniel Carlos</span></h1>
+                    <p class="eyebrow">DESENVOLVEDOR WEB / FRONT-END & FULL STACK</p><h1>Ideias em código.<br>Interfaces com <span class="destaque">propósito.</span></h1><p class="hero-name">Olá, eu sou Daniel Carlos.</p>
                     <p>Desenvolvedor web em início de carreira, focado em criar interfaces modernas, responsivas e funcionais, com atenção à experiência do usuário.</p>
-                    <a href="#contato" class="btn">Entre em contato</a>
+                    <div class="hero-actions"><a href="#projetos" class="btn">Explore meus projetos ↗</a><a href="#contato" class="btn-secondary">Vamos conversar →</a></div>
                 </div>
                 <div class="hero-image">
-                    <i class="fas fa-code"></i>
+                    <div class="terminal-bar"><span></span><span></span><span></span><small>daniel.js</small></div><div class="terminal-code"><span class="code-muted">// Construindo soluções para a web</span><br><span class="code-purple">const</span> developer = {<br>&nbsp; nome: <span class="code-green">"Daniel Carlos"</span>,<br>&nbsp; stack: [<span class="code-green">"JavaScript", "Python"</span>],<br>&nbsp; foco: <span class="code-green">"Experiência do usuário"</span>,<br>&nbsp; aprendizado: <span class="code-purple">true</span><br>};<br><br>developer.<span class="code-green">criar</span>(suaIdeia);<span class="cursor">▍</span></div><div class="terminal-footer"><span>●</span> Transformando ideias em experiências</div>
                 </div>
             </div>
         </section>
 
         <!-- Seção Sobre -->
         <section id="sobre">
-            <h2>Sobre mim</h2>
+            <p class="eyebrow">01 / QUEM SOU</p><h2>Código, curiosidade<br>e evolução constante.</h2>
             <div class="sobre-content">
                 <p>Sou desenvolvedor web com experiência prática em projetos próprios, freelas e soluções para clientes. Trabalho com HTML, CSS, JavaScript e integração com backend utilizando Python com Flask.</p>
-                <p>Já desenvolvi landing pages, FAQ dinâmico, pop-ups interativos, carrosséis de depoimentos e aplicações web como sistema de controle financeiro e chatbot. Sou formado em Análise e Desenvolvimento de Sistemas pela Braz Cubas e também concluí o curso de Desenvolvimento Web no IOS.</p>
+                <p>Já desenvolvi landing pages, FAQ dinâmico, pop-ups interativos, carrosséis de depoimentos e aplicações web como sistema de controle financeiro e chatbot. Também criei a Norden, um SaaS de atendimento pelo WhatsApp com assistente virtual, desenvolvido em React, Node.js e PostgreSQL. Sou formado em Análise e Desenvolvimento de Sistemas pela Braz Cubas e também concluí o curso de Desenvolvimento Web no IOS.</p>
                 <p>Tenho perfil autodidata, facilidade para aprender novas tecnologias e busco crescer como desenvolvedor front-end e full stack júnior, criando aplicações modernas, performáticas e úteis para o usuário.</p>
             </div>
         </section>
 
         <!-- Seção Habilidades -->
         <section id="skills">
-            <h2>Habilidades</h2>
+            <p class="eyebrow">02 / MINHA CAIXA DE FERRAMENTAS</p><h2>Tecnologias que uso.</h2>
             <div class="skills-grid">
                 <div class="skill-card">
                     <i class="fab fa-html5"></i>
@@ -100,7 +91,7 @@
 
         <!-- Seção Projetos -->
         <section id="projetos">
-            <h2>Projetos</h2>
+            <p class="eyebrow">03 / DO CÓDIGO À PRÁTICA</p><h2>Projetos selecionados.</h2>
             <div class="projetos-grid">
                 <div class="projeto-card">
                     <div class="projeto-img">
@@ -116,20 +107,30 @@
                     <a href="https://controle-de-gasto-production.up.railway.app/" class="projeto-link">Ver projeto</a>
                 </div>
 
-                <!-- <div class="projeto-card">
-                    <div class="projeto-img">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>Chatbot com Flask</h3>
-                    <p>Aplicação web com integração entre frontend e backend, utilizando rotas em Flask e respostas automatizadas.</p>
-                    <div class="projeto-tech">
-                        <span>Python</span>
-                        <span>Flask</span>
-                        <span>HTML</span>
-                    </div>
-                    <a href="#" class="projeto-link">Ver projeto</a>
-                </div> -->
+              <div class="projeto-card">
+  <div class="projeto-img">
+    <i class="fas fa-comments"></i>
+  </div>
 
+  <h3>Norden</h3>
+
+  <p>
+    Plataforma SaaS para empresas organizarem atendimentos pelo WhatsApp.
+    A Suzy, assistente virtual da Norden, ajuda a entender solicitações,
+    registrar clientes, projetos, orçamentos e encaminhar atendimentos humanos.
+  </p>
+
+  <div class="projeto-tech">
+    <span>React</span>
+    <span>Node.js</span>
+    <span>PostgreSQL</span>
+    <span>WhatsApp API</span>
+  </div>
+
+  <a href="https://norden-a0bb.onrender.com" class="projeto-link" target="_blank" rel="noreferrer">
+    Ver projeto
+  </a>
+</div>
                 <div class="projeto-card">
                     <div class="projeto-img">
                         <i class="fas fa-laptop-code"></i>
@@ -148,7 +149,7 @@
                     <div class="projeto-img">
                     <i class="fa-solid fa-film" ></i>
                     </div>
-                    <h3>State viewer</h3>
+                    <h3>Movie Stats Viewer</h3>
                     <p>Aplicação que consome uma REST API para buscar filmes, exibindo estatísticas e detalhes dinamicamente.</p>
                     <div class="projeto-tech">
                           <span>HTML</span>
@@ -162,7 +163,7 @@
 
         <!-- Seção Contato -->
         <section id="contato">
-            <h2>Contato</h2>
+            <p class="eyebrow">04 / PRÓXIMO PASSO</p><h2>Vamos construir<br>algo juntos<span class="destaque">?</span></h2>
             <div class="contato-content">
                 <p>Tem um projeto em mente ou uma oportunidade na área? Vamos conversar.</p>
                 <div class="contato-links">
@@ -170,13 +171,18 @@
                         <i class="fas fa-envelope"></i>
                         danielcarlos2135@gmail.com
                     </a>
-                    <a href="https://github.com/dan2135" target="_blank" class="contato-item">
+                    <a href="https://github.com/dan2135" target="_blank" rel="noopener noreferrer" class="contato-item">
                         <i class="fab fa-github"></i>
                         GitHub
                     </a>
-                    <a href="#" target="_blank" class="contato-item">
+                    <a href="https://www.linkedin.com/in/daniel-carlos-oliveira-silva/" target="_blank" rel="noopener noreferrer" class="contato-item">
                         <i class="fab fa-linkedin"></i>
                         LinkedIn
+                    </a>
+
+                    <a href="https://api.whatsapp.com/send?phone=5511919988939" target="_blank" rel="noopener noreferrer" class="contato-item">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp
                     </a>
                 </div>
             </div>
